@@ -12,9 +12,12 @@ const Navbar: React.FC<HasHome> = ({ isHome }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [modal, setModal] = useState(false);
 
-  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('test search');
-  };
+  const onChangeSearch = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log('test search');
+    },
+    []
+  );
 
   return (
     <div
