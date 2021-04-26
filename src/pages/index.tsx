@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Link from 'next/Link';
+import Link from 'next/link';
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
 
