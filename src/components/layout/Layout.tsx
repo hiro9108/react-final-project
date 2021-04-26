@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import Header from './common/Header';
-import Footer from './common/Footer';
+import { Header, Footer } from '../layout/common';
 
 interface Title {
   title: string;
