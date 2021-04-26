@@ -1,39 +1,69 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-
+import { NextPage } from 'next';
+import Link from 'next/Link';
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
 
+import Layout from '../components/layout/Layout';
+
 const rootStyle = css`
-  ${tw`bg-gray-600`}
+  ${tw`bg-gray-600 text-xl`}
   color: white;
 `;
 
-export default function Home() {
+const container = css`
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const main = css`
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const title = css`
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+  text-align: center;
+  a {
+    color: #0070f3;
+    text-decoration: none;
+    &:hover {
+      color: #0070f3;
+      text-decoration: none;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-          <p css={rootStyle}>tail wind</p>
-        </h1>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    <Layout title="Home">
+      <div css={container}>
+        <main css={main}>
+          <h1 css={title}>
+            Move to{' '}
+            <Link href="/demo">
+              <a>App!</a>
+            </Link>
+            <p css={rootStyle}>Home Page</p>
+          </h1>
+        </main>
+      </div>
+    </Layout>
   );
-}
+};
+
+export default Home;
