@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { css } from '@emotion/react';
 import ModalFrame from 'react-modal';
+import { v4 as uuidv4 } from 'uuid';
 
-import { TextField, Button } from './';
-import { createIssue } from '../../infrastructure/store/data/dataSlice';
-import { ModalType } from '../../types';
+import { TextField, Button } from '..';
+import { createIssue } from '../../../infrastructure/store/data/dataSlice';
+import { ModalType } from '../../../types';
 
 const customStyles = {
   overlay: {
@@ -25,15 +25,6 @@ const customStyles = {
   },
 };
 
-// const customStyles = css`
-//   top: 50%;
-//   left: 50%;
-//   right: auto;
-//   bottom: auto;
-//   margin-right: -50%;
-//   transform: translate(-50%, -50%);
-// `;
-
 export const Modal: React.FC<ModalType> = ({ isModalOpen }) => {
   const [isCondition, setIsCondition] = useState(false);
 
@@ -50,7 +41,7 @@ export const Modal: React.FC<ModalType> = ({ isModalOpen }) => {
   const onSubmitHandler = ({ title, state, url, created, updated }) => {
     dispatch(
       createIssue({
-        id: '11111',
+        id: uuidv4(),
         title,
         state,
         url,
