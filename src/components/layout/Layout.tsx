@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import { Header, Footer } from '../layout/common';
 
-interface Title {
-  title: string;
-}
-
-const Layout: React.FC<Title> = ({ children, title = 'None Title' }) => {
+const Layout: React.FC<{ title: string }> = ({
+  children,
+  title = 'None Title',
+}) => {
   return (
     <div className="font-primary bg-primary text-primary">
       <Head>

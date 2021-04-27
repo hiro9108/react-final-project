@@ -55,7 +55,7 @@ const Home: NextPage = () => {
         <main css={main}>
           <h1 css={title}>
             Move to{' '}
-            <Link href="/demo">
+            <Link href="/dashboard">
               <a>App!</a>
             </Link>
             <p css={rootStyle}>Home Page</p>
