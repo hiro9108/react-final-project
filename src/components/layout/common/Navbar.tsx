@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useState, useCallback } from 'react';
 
-import SearchBar from '../../UI/SearchBar';
+import { TextField } from '../../UI';
 
 interface HasHome {
   isHome: boolean;
@@ -79,12 +79,16 @@ const Navbar: React.FC<HasHome> = ({ isHome }) => {
             }
           >
             {isHome ? (
-              <Link href="/demo">
+              <Link href="/dashboard">
                 <a className="cursor-pointer capitalize">login</a>
               </Link>
             ) : (
               <>
-                <SearchBar onChange={onChangeSearch} />
+                <TextField
+                  type="search"
+                  placefolder="Search..."
+                  onChange={onChangeSearch}
+                />
                 <Link href="/">
                   <a className="cursor-pointer capitalize">logout</a>
                 </Link>
