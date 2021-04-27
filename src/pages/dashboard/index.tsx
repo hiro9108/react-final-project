@@ -5,6 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
 
+import Layout from '../../components/layout/Layout';
+import { Modal } from '../../components/UI';
+import {
+  SyncIcon,
+  EditIcon,
+  DeleteIcon,
+  PlusIcon,
+} from '../../components/UI/icons';
 import {
   selectUser,
   updateName,
@@ -14,15 +22,6 @@ import {
   createIssue,
   deleteIssue,
 } from '../../infrastructure/store/data/dataSlice';
-
-import Layout from '../../components/layout/Layout';
-import { Modal } from '../../components/UI';
-import {
-  SyncIcon,
-  EditIcon,
-  DeleteIcon,
-  PlusIcon,
-} from '../../components/UI/icons';
 
 const rootStyle = css`
   margin-bottom: 10rem;
