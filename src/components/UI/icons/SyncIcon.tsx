@@ -7,7 +7,7 @@ export const SyncIcon: React.FC<IconClickType> = ({ onClick }) => (
   <FontAwesomeIcon
     icon={faSync}
     size="xs"
-    className="cursor-pointer m-2"
+    className="cursor-pointer m-2 h-10"
     onClick={onClick}
   />
 );

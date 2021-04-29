@@ -7,7 +7,7 @@ export const PlusIcon: React.FC<IconClickType> = ({ onClick }) => (
   <FontAwesomeIcon
     icon={faPlus}
     size="xs"
-    className="cursor-pointer m-2"
+    className="cursor-pointer m-2 h-10"
     onClick={onClick}
   />
 );

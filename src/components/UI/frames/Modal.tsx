@@ -1,16 +1,19 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
 import ModalFrame from 'react-modal';
 import { v4 as uuidv4 } from 'uuid';
 
-import { TextField, Button } from '..';
-import { createIssue } from '../../../infrastructure/store/data/dataSlice';
+import { Form } from '..';
 import { ModalType } from '../../../types';
+import {
+  createIssue,
+  updateIssue,
+} from '../../../infrastructure/store/data/dataSlice';
 
 const customStyles = {
   overlay: {
     position: 'fixed',
+    zIndex: 100,
     top: 0,
     left: 0,
     backgroundColor: 'rgba(0,0,0,0.85)',
@@ -25,77 +28,95 @@ const customStyles = {
   },
 };
 
-export const Modal: React.FC<ModalType> = ({ isModalOpen }) => {
+export const Modal: React.FC<ModalType> = ({ updateIssueArr, isModalOpen }) => {
   const [isCondition, setIsCondition] = useState(false);
 
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    setIsCondition(isModalOpen);
+    setIsCondition(isModalOpen.isOpen);
     return () => {
       setIsCondition(false);
     };
   }, [isModalOpen]);
 
-  const onSubmitHandler = ({ title, state, url, created, updated }) => {
-    dispatch(
-      createIssue({
-        id: uuidv4(),
-        title,
-        state,
-        url,
-        created,
-        updated,
-      })
-    );
+  const updateSpecificIssue = (id, title, state, url, created, updated) => {
+    const passData = {
+      id,
+      title,
+      state,
+      url,
+      created,
+      updated,
+      checkId: updateIssueArr[0].id,
+    };
+
+    for (let key of Object.keys(passData)) {
+      if (!passData[key]) passData[key] = updateIssueArr[0][key];
+    }
+    dispatch(updateIssue(passData));
+  };
+
+  const onSubmitHandler = ({ id, title, state, url, created, updated }) => {
+    if (isModalOpen.isEdit) {
+      updateSpecificIssue(id, title, state, url, created, updated);
+    } else {
+      dispatch(
+        createIssue({
+          id: uuidv4(),
+          title,
+          state,
+          url,
+          created,
+          updated,
+        })
+      );
+    }
     setIsCondition(false);
   };
 
-  const closeModal = useCallback(() => {
+  const onCancelHandler = useCallback(() => {
     setIsCondition(false);
   }, []);
 
-  const onCancelHandler = useCallback(() => {
+  const closeModal = useCallback(() => {
     setIsCondition(false);
   }, []);
 
   return (
     <ModalFrame
       isOpen={isCondition}
-      // onAfterOpen={afterOpenModal}
+      onAfterOpen={null}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="Example Modal"
+      contentLabel="Modal"
     >
-      <h2>Add New Issue</h2>
+      {isModalOpen.isEdit ? (
+        <>
+          <h2>Update Issue</h2>
+          <br />
+          <Form
+            onSubmitHandler={onSubmitHandler}
+            onCancelHandler={onCancelHandler}
+            textId={updateIssueArr[0].id}
+            textTitle={updateIssueArr[0].title}
+            textState={updateIssueArr[0].state}
+            textUrl={updateIssueArr[0].url}
+            textCreated={updateIssueArr[0].created}
+            textUpdated={updateIssueArr[0].updated}
+          />
+        </>
+      ) : (
+        <>
+          <h2>Add New Issue</h2>
+          <br />
+          <Form
+            onSubmitHandler={onSubmitHandler}
+            onCancelHandler={onCancelHandler}
+          />
+        </>
+      )}
       <br />
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmitHandler)}>
-        <TextField type="text" placefolder="Title" {...register('title')} />
-        <br />
-        <TextField type="text" placefolder="State" {...register('state')} />
-        <br />
-        <TextField type="text" placefolder="Url" {...register('url')} />
-        <br />
-        <TextField
-          type="text"
-          placefolder="Created at"
-          {...register('created')}
-        />
-        <br />
-        <TextField
-          type="text"
-          placefolder="Updated at"
-          {...register('updated')}
-        />
-        <br />
-        <div className="flex justify-center items-center">
-          <Button type="submit">Save</Button>
-          <Button type="button" onClick={onCancelHandler}>
-            Cancel
-          </Button>
-        </div>
-      </form>
     </ModalFrame>
   );
 };

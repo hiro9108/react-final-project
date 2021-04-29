@@ -1,6 +1,8 @@
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
+
 import { SyncIcon, PlusIcon, EditIcon, DeleteIcon } from '..';
+import { TableType } from '../../../types';
 
 const rootStyle = css`
   margin-bottom: 10rem;
@@ -19,7 +21,6 @@ const rootStyle = css`
   }
   table td {
     padding: 0.5rem;
-    /* background-color: #fff; */
     border: 0.1rem solid #666666;
   }
   /* table tr {
@@ -27,13 +28,19 @@ const rootStyle = css`
   } */
 `;
 
-export const Table = ({ createIssueHandler, deleteIssueHandler, issues }) => {
+export const Table: React.FC<TableType> = ({
+  issues,
+  syncIssueHandler,
+  createIssueHandler,
+  editIssueHandler,
+  deleteIssueHandler,
+}) => {
   return (
     <div className="mt-56" css={rootStyle}>
       <table>
         <div className="flex">
           <PlusIcon onClick={createIssueHandler} />
-          <SyncIcon onClick={() => alert('sync')} />
+          <SyncIcon onClick={syncIssueHandler} />
         </div>
         <tr>
           <th>id</th>
@@ -54,7 +61,7 @@ export const Table = ({ createIssueHandler, deleteIssueHandler, issues }) => {
             <td>{issue.created}</td>
             <td>{issue.updated}</td>
             <td>
-              <EditIcon onClick={() => alert('edit')} />
+              <EditIcon onClick={() => editIssueHandler(issue.id)} />
             </td>
             <td>
               <DeleteIcon onClick={() => deleteIssueHandler(issue.id)} />

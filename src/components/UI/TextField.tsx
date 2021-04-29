@@ -5,6 +5,7 @@ export const TextField = ({
   name,
   placefolder,
   onChange,
+  value,
 }: TextFieldType) => {
   if (type === 'text') {
     return (
@@ -12,8 +13,9 @@ export const TextField = ({
         type="text"
         name={name}
         placeholder={placefolder}
-        className="mr-4 px-2 py-1 rounded outline-none bg-red-200"
+        className="mr-4 px-2 py-1 rounded outline-none w-96 bg-primary "
         onChange={onChange}
+        defaultValue={value}
         required
       />
     );

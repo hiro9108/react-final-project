@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
-import { useState, useCallback } from 'react';
 
 import { TextField } from '../../UI';
+import {
+  selectIssues,
+  searchIssues,
+} from '../../../infrastructure/store/data/dataSlice';
 
 interface HasHome {
   isHome: boolean;
@@ -11,10 +15,21 @@ interface HasHome {
 const Navbar: React.FC<HasHome> = ({ isHome }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [modal, setModal] = useState(false);
+  const [update, setUpdata] = useState(false);
+
+  const issues = useSelector(selectIssues);
+  const dispatch = useDispatch();
 
   const onChangeSearch = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log('test search');
+      const searchArray = issues.filter((issue) => {
+        return (
+          issue.title.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1
+        );
+      });
+      console.log(searchArray);
+      dispatch(searchIssues(searchArray));
+      setUpdata(update ? false : true);
     },
     []
   );
@@ -86,7 +101,7 @@ const Navbar: React.FC<HasHome> = ({ isHome }) => {
               <>
                 <TextField
                   type="search"
-                  placefolder="Search..."
+                  placefolder="Title Search..."
                   onChange={onChangeSearch}
                 />
                 <Link href="/">
