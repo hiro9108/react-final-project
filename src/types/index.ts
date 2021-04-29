@@ -1,14 +1,14 @@
+export interface DataType {
+  id: string;
+  title: string;
+  state: string;
+  url: string;
+  created: string;
+  updated: string;
+}
+
 export interface ModalType {
-  updateIssueArr: [
-    {
-      id: string;
-      title: string;
-      state: string;
-      url: string;
-      created: string;
-      updated: string;
-    }
-  ];
+  updateIssueArr: DataType[];
   isModalOpen: {
     isOpen: boolean;
     isEdit: boolean;
@@ -16,16 +16,7 @@ export interface ModalType {
 }
 
 export interface TableType {
-  issues: [
-    {
-      id: string;
-      title: string;
-      state: string;
-      url: string;
-      created: string;
-      updated: string;
-    }
-  ];
+  issues: DataType[];
   syncIssueHandler: () => void;
   createIssueHandler: () => void;
   editIssueHandler: (id: string) => void;

@@ -26,7 +26,7 @@ export const TextField = ({
         type="search"
         name={name}
         placeholder={placefolder}
-        className="hidden mr-4 px-2 py-1 rounded outline-none sm:block"
+        className="mr-4 px-2 py-1 rounded outline-none w-96"
         onChange={onChange}
       />
     );

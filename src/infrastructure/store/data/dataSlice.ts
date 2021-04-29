@@ -1,33 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {
-  issues: [
-    {
-      id: '867843923',
-      title: 'React language service performance issue',
-      state: 'open',
-      url: 'https://api.github/dfsdf',
-      created: '2021-04-26T15:43:00Z',
-      updated: '2021-04-26T16:09:41Z',
-    },
-    {
-      id: '1qazxsw2',
-      title: 'javascript language service performance issue',
-      state: 'close',
-      url: 'https://api.github/aaaa',
-      created: '1021-04-26T15:43:00Z',
-      updated: '3021-04-26T16:09:41Z',
-    },
-    {
-      id: 'dfsaffads',
-      title: 'typescript language service performance issue',
-      state: 'open',
-      url: 'https://api.github/bbbb',
-      created: '2022-04-26T15:43:00Z',
-      updated: '2024-04-26T16:09:41Z',
-    },
-  ],
-};
+import { initialState } from './initialState';
 
 export const dataSlice = createSlice({
   name: 'data',

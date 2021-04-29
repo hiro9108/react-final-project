@@ -57,7 +57,10 @@ export const Modal: React.FC<ModalType> = ({ updateIssueArr, isModalOpen }) => {
     dispatch(updateIssue(passData));
   };
 
+  // check useCallback function
   const onSubmitHandler = ({ id, title, state, url, created, updated }) => {
+    console.log(isModalOpen);
+
     if (isModalOpen.isEdit) {
       updateSpecificIssue(id, title, state, url, created, updated);
     } else {

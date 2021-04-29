@@ -31,22 +31,22 @@ export const Form: React.FC<FormType> = ({
     setTextUpdatedCondition(textUpdated);
   }, []);
 
-  const onChangeIdHandler = (e) => {
+  const onChangeIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextIdCondition(e.target.value);
   };
-  const onChangeTitleHandler = (e) => {
+  const onChangeTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextTitleCondition(e.target.value);
   };
-  const onChangeStateHandler = (e) => {
+  const onChangeStateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextStateCondition(e.target.value);
   };
-  const onChangeUrlHandler = (e) => {
+  const onChangeUrlHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextUrlCondition(e.target.value);
   };
-  const onChangeCreatedHandler = (e) => {
+  const onChangeCreatedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextCreatedCondition(e.target.value);
   };
-  const onChangeUpdatedHandler = (e) => {
+  const onChangeUpdatedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextUpdatedCondition(e.target.value);
   };
 
