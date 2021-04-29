@@ -6,8 +6,7 @@ import { css } from '@emotion/react';
 import Layout from '../components/layout/Layout';
 
 const rootStyle = css`
-  ${tw`bg-gray-600 text-xl`}
-  color: white;
+  ${tw`bg-gray-600 text-xl text-white`}
 `;
 
 const container = css`

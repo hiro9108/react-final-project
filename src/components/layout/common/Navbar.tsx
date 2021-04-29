@@ -1,8 +1,5 @@
-import React from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { useState, useCallback } from 'react';
-
-import { TextField } from '../../UI';
 
 interface HasHome {
   isHome: boolean;
@@ -11,13 +8,6 @@ interface HasHome {
 const Navbar: React.FC<HasHome> = ({ isHome }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [modal, setModal] = useState(false);
-
-  const onChangeSearch = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log('test search');
-    },
-    []
-  );
 
   return (
     <div
@@ -83,16 +73,9 @@ const Navbar: React.FC<HasHome> = ({ isHome }) => {
                 <a className="cursor-pointer capitalize">login</a>
               </Link>
             ) : (
-              <>
-                <TextField
-                  type="search"
-                  placefolder="Search..."
-                  onChange={onChangeSearch}
-                />
-                <Link href="/">
-                  <a className="cursor-pointer capitalize">logout</a>
-                </Link>
-              </>
+              <Link href="/">
+                <a className="cursor-pointer capitalize">logout</a>
+              </Link>
             )}
           </ul>
         </div>

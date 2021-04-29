@@ -6,8 +6,8 @@ import { IconClickType } from '../../../types';
 export const EditIcon: React.FC<IconClickType> = ({ onClick }) => (
   <FontAwesomeIcon
     icon={faMarker}
-    size="xs"
-    className="cursor-pointer m-1"
+    size="lg"
+    className="cursor-pointer h-8 mr-4"
     onClick={onClick}
   />
 );

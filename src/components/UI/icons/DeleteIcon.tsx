@@ -6,8 +6,8 @@ import { IconClickType } from '../../../types';
 export const DeleteIcon: React.FC<IconClickType> = ({ onClick }) => (
   <FontAwesomeIcon
     icon={faTrash}
-    size="xs"
-    className="cursor-pointer m-3"
+    size="lg"
+    className="cursor-pointer h-8 mx-auto"
     onClick={onClick}
   />
 );

@@ -6,8 +6,8 @@ import { IconClickType } from '../../../types';
 export const PlusIcon: React.FC<IconClickType> = ({ onClick }) => (
   <FontAwesomeIcon
     icon={faPlus}
-    size="xs"
-    className="cursor-pointer m-2"
+    size="lg"
+    className="cursor-pointer h-10"
     onClick={onClick}
   />
 );
