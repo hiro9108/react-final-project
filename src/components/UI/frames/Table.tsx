@@ -2,8 +2,15 @@ import { useState, useEffect } from 'react';
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
 
-import { TextField, SyncIcon, PlusIcon, EditIcon, DeleteIcon } from '..';
 import { TableType } from '../../../types';
+import {
+  Pagenation,
+  TextField,
+  SyncIcon,
+  PlusIcon,
+  EditIcon,
+  DeleteIcon,
+} from '..';
 
 const rootStyle = css`
   margin-bottom: 10rem;
@@ -13,7 +20,7 @@ const rootStyle = css`
     border-collapse: collapse;
   }
   table th {
-    ${tw`bg-red-200`}
+    ${tw`bg-gray-600 text-white`}
     white-space: nowrap;
     padding: 1rem 0.5rem;
     text-align: left;
@@ -36,6 +43,9 @@ export const Table: React.FC<TableType> = ({
   const [initArr, setInitArr] = useState([]);
   const [newArr, setNewArr] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagePerUnit, setPagePerUnit] = useState(5);
+
   useEffect(() => {
     setInitArr(issues);
     setNewArr(issues);
@@ -49,6 +59,16 @@ export const Table: React.FC<TableType> = ({
     });
     setNewArr(searchArray);
   };
+
+  // For Pagenation
+  const indexOfLastUser = currentPage * pagePerUnit;
+  const indexOfFirstUser = indexOfLastUser - pagePerUnit;
+  const currentPost = newArr.slice(indexOfFirstUser, indexOfLastUser);
+
+  const paginationClickHandler = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  //
 
   return (
     <div className="mt-56" css={rootStyle}>
@@ -76,7 +96,7 @@ export const Table: React.FC<TableType> = ({
             <SyncIcon onClick={syncIssueHandler} />
           </th>
         </tr>
-        {newArr.map((issue) => (
+        {currentPost.map((issue) => (
           <tr key={issue.id}>
             <td>{issue.id}</td>
             <td>{issue.title}</td>
@@ -93,6 +113,11 @@ export const Table: React.FC<TableType> = ({
           </tr>
         ))}
       </table>
+      <Pagenation
+        userDataLength={newArr.length}
+        pagePerUnit={pagePerUnit}
+        paginationClickHandler={paginationClickHandler}
+      />
     </div>
   );
 };

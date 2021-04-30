@@ -96,7 +96,7 @@ export const Modal: React.FC<ModalType> = ({ updateIssueArr, isModalOpen }) => {
     >
       {isModalOpen.isEdit ? (
         <>
-          <h2>Update Issue</h2>
+          <h2>Update the Issue</h2>
           <br />
           <Form
             onSubmitHandler={onSubmitHandler}
@@ -111,7 +111,7 @@ export const Modal: React.FC<ModalType> = ({ updateIssueArr, isModalOpen }) => {
         </>
       ) : (
         <>
-          <h2>Add New Issue</h2>
+          <h2>Add a New Issue</h2>
           <br />
           <Form
             onSubmitHandler={onSubmitHandler}
