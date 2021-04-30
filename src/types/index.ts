@@ -51,3 +51,9 @@ export interface ButtonType {
 export interface IconClickType {
   onClick: React.MouseEventHandler<SVGSVGElement>;
 }
+
+export interface PagenationType {
+  userDataLength: number;
+  pagePerUnit: number;
+  paginationClickHandler: (el: number) => void;
+}

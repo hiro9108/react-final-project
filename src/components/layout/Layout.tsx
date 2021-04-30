@@ -6,7 +6,7 @@ const Layout: React.FC<{ title: string }> = ({
   title = 'None Title',
 }) => {
   return (
-    <div className="font-primary bg-primary text-primary">
+    <div className="font-primary bg-primary text-primary h-screen">
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
